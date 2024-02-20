@@ -1,0 +1,24 @@
+version: '3.8'
+
+networks:
+  panic_at_the_cisco:
+    driver: bridge
+
+
+services:
+  influxdb:
+    image: influxdb:latest
+    container_name: influxdb
+    networks:
+      - panic_at_the_cisco
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "8086:8086"
+
+
+
+
